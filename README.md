@@ -54,7 +54,7 @@ command:
 
 ```shell
 # initialize cirrus-workspace for the zephyr-applications (main branch)
-west init -m https://github.com/zephyrproject-rtos/zephyr-applications --mr main cirrus-workspace
+west init -m https://github.com/CirrusLogic/zephyr-applications --mr main cirrus-workspace
 # update Zephyr modules
 cd cirrus-workspace
 west update
