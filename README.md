@@ -1,5 +1,11 @@
 # Zephyr Example Application
- 
+
+<a href="https://github.com/zephyrproject-rtos/example-application/actions/workflows/build.yml?query=branch%3Amain">
+  <img src="https://github.com/zephyrproject-rtos/example-application/actions/workflows/build.yml/badge.svg?event=push">
+</a>
+<a href="https://github.com/zephyrproject-rtos/example-application/actions/workflows/docs.yml?query=branch%3Amain">
+  <img src="https://github.com/zephyrproject-rtos/example-application/actions/workflows/docs.yml/badge.svg?event=push">
+</a>
 <a href="https://zephyrproject-rtos.github.io/example-application">
   <img alt="Documentation" src="https://img.shields.io/badge/documentation-3D578C?logo=sphinx&logoColor=white">
 </a>
@@ -21,6 +27,7 @@ applications. Some of the features demonstrated in this example are:
 - Out-of-tree libraries
 - Example CI configuration (using GitHub Actions)
 - Custom [west extension][west_ext]
+- Custom [Zephyr runner][runner_ext]
 - Doxygen and Sphinx documentation boilerplate
 
 This repository is versioned together with the [Zephyr main tree][zephyr]. This
@@ -39,6 +46,7 @@ points to the development branch of Zephyr, also `main`.
 [drivers]: https://docs.zephyrproject.org/latest/reference/drivers/index.html
 [zephyr]: https://github.com/zephyrproject-rtos/zephyr
 [west_ext]: https://docs.zephyrproject.org/latest/develop/west/extensions.html
+[runner_ext]: https://docs.zephyrproject.org/latest/develop/modules.html#external-runners
 
 ## Getting Started
 
@@ -79,7 +87,7 @@ A sample debug configuration is also provided. To apply it, run the following
 command:
 
 ```shell
-west build -b $BOARD app -- -DOVERLAY_CONFIG=debug.conf
+west build -b $BOARD app -- -DEXTRA_CONF_FILE=debug.conf
 ```
 
 Once you have built the application, run the following command to flash it:
