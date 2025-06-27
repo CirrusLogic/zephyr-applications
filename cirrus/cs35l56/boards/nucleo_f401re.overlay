@@ -1,0 +1,48 @@
+/*
+ * Copyright (c) 2025 Cirrus Logic, Inc.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+ #include <zephyr/dt-bindings/gpio/gpio.h>
+ #include <zephyr/dt-bindings/i2c/i2c.h>
+
+/ {
+    vdd_p: vdd-p {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd-p";
+        regulator-always-on;
+	};
+
+    vdd_amp: vdd-amp {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd-amp";
+        regulator-always-on;
+	};
+};
+
+&usart1 {
+    status = "disabled";
+};
+
+&i2c1 {
+    pinctrl-0 = <&i2c1_scl_pb6 &i2c1_sda_pb7>;
+    status = "okay";
+    clock-frequency = <I2C_BITRATE_STANDARD>;
+
+    cs35l56_l: cs35l56@30 {
+        compatible = "cirrus,cs35l56";
+        reg = <0x30>;
+        status = "okay";
+
+        reset-gpios = <&gpioa 7 GPIO_ACTIVE_LOW>;
+    };
+
+    cs35l56_r: cs35l56@31 {
+        compatible = "cirrus,cs35l56";
+        reg = <0x31>;
+        status = "okay";
+
+        reset-gpios = <&gpioa 7 GPIO_ACTIVE_LOW>;
+    };
+};
