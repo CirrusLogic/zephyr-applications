@@ -1,0 +1,10 @@
+# Copyright (c) 2025 Cirrus Logic, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+source "Kconfig.zephyr"
+
+config TOGGLE_MUTE_SW0
+	bool "Toggle mute when pressing sw0"
+	depends on $(dt_alias_enabled,sw0)
+	select GPIO
+	default y
