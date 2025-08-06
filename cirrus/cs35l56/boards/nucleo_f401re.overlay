@@ -43,6 +43,5 @@
         reg = <0x31>;
         status = "okay";
 
-        reset-gpios = <&gpioa 7 GPIO_ACTIVE_LOW>;
     };
 };
