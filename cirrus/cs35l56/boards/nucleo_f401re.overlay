@@ -42,6 +42,17 @@
         compatible = "cirrus,cs35l56";
         reg = <0x31>;
         status = "okay";
+    };
 
+    cs35l56_bl: cs35l56@34 {
+        compatible = "cirrus,cs35l56";
+        reg = <0x34>;
+        status = "okay";
+    };
+
+    cs35l56_br: cs35l56@35 {
+        compatible = "cirrus,cs35l56";
+        reg = <0x35>;
+        status = "okay";
     };
 };
