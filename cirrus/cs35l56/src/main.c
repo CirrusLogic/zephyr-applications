@@ -131,7 +131,6 @@ static void set_codec_output_state(const bool playback)
 {
 	printk("%s audio playback\n", playback ? "Starting" : "Pausing");
 	if (playback) {
-		init_codecs();
 		for (int i = 0; i < ARRAY_SIZE(amps); i++) {
 			if (amps[i] == NULL) {
 				continue;
