@@ -98,25 +98,25 @@ static int init_codecs(void)
 		}
 
 		if ((i % 2) == 0) {
-			ret = audio_codec_route_input(amps[i], AUDIO_CHANNEL_FRONT_LEFT, ASP1_RX1);
+			ret = audio_codec_route_output(amps[i], AUDIO_CHANNEL_FRONT_LEFT, ASP1_RX1);
 			if (ret < 0) {
-				printk("\nError: Failed to route left input path.\n");
+				printk("\nError: Failed to route left output path.\n");
 				return ret;
 			}
 
-			ret = audio_codec_set_property(amps[i], AUDIO_PROPERTY_INPUT_MUTE, AUDIO_CHANNEL_FRONT_LEFT, val);
+			ret = audio_codec_set_property(amps[i], AUDIO_PROPERTY_OUTPUT_MUTE, AUDIO_CHANNEL_FRONT_LEFT, val);
 			if (ret < 0) {
 				printk("\nError: Failed to unmute left amp, %d\n", ret);
 				return ret;
 			}
 		} else {
-			ret = audio_codec_route_input(amps[i], AUDIO_CHANNEL_FRONT_RIGHT, ASP1_RX2);
+			ret = audio_codec_route_output(amps[i], AUDIO_CHANNEL_FRONT_RIGHT, ASP1_RX2);
 			if (ret < 0) {
-				printk("\nError: Failed to route right input path.\n");
+				printk("\nError: Failed to route right output path.\n");
 				return ret;
 			}
 
-			ret = audio_codec_set_property(amps[i], AUDIO_PROPERTY_INPUT_MUTE, AUDIO_CHANNEL_FRONT_RIGHT, val);
+			ret = audio_codec_set_property(amps[i], AUDIO_PROPERTY_OUTPUT_MUTE, AUDIO_CHANNEL_FRONT_RIGHT, val);
 			if (ret < 0) {
 				printk("\nError: Failed to unmute right amp\n");
 				return ret;
