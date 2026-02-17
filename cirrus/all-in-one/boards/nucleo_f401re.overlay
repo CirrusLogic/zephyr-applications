@@ -1,0 +1,90 @@
+/*
+ * Copyright (c) 2026 Cirrus Logic, Inc.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+ #include <zephyr/dt-bindings/gpio/gpio.h>
+ #include <zephyr/dt-bindings/i2c/i2c.h>
+
+/ {
+    vdd_p: vdd-p {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd-p";
+        regulator-always-on;
+	};
+
+    vdd_amp: vdd-amp {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd-amp";
+        regulator-always-on;
+	};
+
+    aliases {
+		codec0 = &cs42l45_0;
+        amp-l = &cs35l56_l;
+        amp-r = &cs35l56_r;
+        amp-bl = &cs35l56_bl;
+        amp-br = &cs35l56_br;
+	};
+};
+
+&usart1 {
+    status = "disabled";
+};
+
+&i2c1 {
+    status = "okay";
+
+    pinctrl-0 = <&i2c1_scl_pb6 &i2c1_sda_pb7>;
+    pinctrl-1 = <&analog_pb6 &analog_pb7>;
+	pinctrl-names = "default", "sleep";
+
+    clock-frequency = <I2C_BITRATE_FAST>;
+
+    cs42l45_0: cs42l45@1a {
+        compatible = "cirrus,cs42l45";
+        reg = <0x1a>;
+
+        reset-gpios = <&gpioc 4 (GPIO_ACTIVE_LOW)>;
+        int-gpios = <&gpioa 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+
+        status = "okay";
+    };
+
+    cs35l56_l: cs35l56@30 {
+        compatible = "cirrus,cs35l56";
+        reg = <0x30>;
+
+        cirrus,preempt-config = "ASP";
+
+        status = "okay";
+    };
+
+    cs35l56_r: cs35l56@31 {
+        compatible = "cirrus,cs35l56";
+        reg = <0x31>;
+
+        cirrus,preempt-config = "ASP";
+
+        status = "okay";
+    };
+
+    cs35l56_bl: cs35l56@33 {
+        compatible = "cirrus,cs35l56";
+        reg = <0x33>;
+
+        cirrus,preempt-config = "ASP";
+
+        status = "okay";
+    };
+
+    cs35l56_br: cs35l56@34 {
+        compatible = "cirrus,cs35l56";
+        reg = <0x34>;
+
+        cirrus,preempt-config = "ASP";
+
+        status = "okay";
+    };
+};
